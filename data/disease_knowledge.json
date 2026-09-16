@@ -1,0 +1,140 @@
+[
+  {
+    "crop": "Tomato",
+    "disease": "Tomato Early Blight",
+    "description": "Early blight is one of the most common tomato diseases, caused by the fungi Alternaria solani and Alternaria tomatophila. It typically starts on older, lower leaves and can be severely yield-limiting on susceptible cultivars under favorable weather.",
+    "symptoms": [
+      "Small, dark spots form on older foliage near the ground, growing up to about half an inch across.",
+      "Larger spots develop target-like concentric rings, often with yellowing tissue around them.",
+      "Severely infected leaves may turn brown and drop, or dead leaves may cling to the stem.",
+      "Stem lesions can appear oval to irregular with dark brown concentric rings.",
+      "Fruit can be infected at any stage, showing leathery, black spots with raised concentric ridges, usually near the stem."
+    ],
+    "possible_causes": [
+      "Warm (59-86°F) temperatures combined with wet weather, heavy dew, or humidity of 90% or greater",
+      "Infected plant debris or soil left in the field from previous seasons",
+      "Contaminated tomato seed or infected transplants",
+      "Splashing rain or irrigation moving spores from soil onto lower leaves"
+    ],
+    "severity": "moderate",
+    "management_practices": [
+      "Scout regularly, especially from mid-season onward, so treatment can begin as soon as symptoms appear.",
+      "Prune and remove infected leaves, sanitizing tools between plants.",
+      "Avoid overhead irrigation; water at the base of the plant to keep foliage dry.",
+      "Rotate out of tomatoes and related crops (peppers, potatoes, eggplant) for at least two years.",
+      "For farm-scale production, consult a local agricultural extension office about appropriate, label-approved fungicide programs, as home gardeners typically do not need to spray."
+    ],
+    "preventive_measures": [
+      "Use pathogen-free seed or collect seed only from disease-free plants.",
+      "Choose early-blight-resistant or -tolerant tomato varieties where available.",
+      "Stake, trellis, or space plants to improve airflow and speed foliage drying.",
+      "Apply mulch to create a barrier between contaminated soil and lower leaves.",
+      "Remove or bury infected plant debris at the end of the season."
+    ],
+    "source": "University of Minnesota Extension",
+    "source_url": "https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/early-blight-in-tomato-and-potato",
+    "last_verified": "2024"
+  },
+  {
+    "crop": "Tomato",
+    "disease": "Tomato Late Blight",
+    "description": "Late blight is a potentially devastating disease of tomato and potato caused by the water mold Phytophthora infestans, the same pathogen responsible for the Irish potato famine. It spreads quickly in cool, wet conditions and can cause total crop failure if untreated.",
+    "symptoms": [
+      "Large, dark brown blotches with a green-gray edge appear on leaves, not confined by leaf veins.",
+      "Infections progress through leaflets and petioles, leaving large sections of dry, brown foliage.",
+      "Stem infections are firm and dark brown with a rounded edge.",
+      "Fruit develops firm, dark brown, circular spots that may become mushy as secondary bacteria invade.",
+      "In high humidity, thin, powdery white fungal growth may appear on the underside of infected leaves and on stems and fruit."
+    ],
+    "possible_causes": [
+      "Cool (60-70°F), damp weather that allows the pathogen to spread rapidly",
+      "Infected potato seed tubers or infected tomato transplants brought in from other regions",
+      "Windblown spores (sporangia) carried from established outbreaks",
+      "Volunteer potato or tomato plants and cull piles carrying the pathogen over winter"
+    ],
+    "severity": "high",
+    "management_practices": [
+      "Scout regularly, especially early in the day before dew dries, paying extra attention to shaded or poorly ventilated parts of the field.",
+      "Remove and destroy infected plants promptly; disc under, herbicide-kill, or flame-kill infected plants if only a few are affected.",
+      "Keep foliage as dry as possible using drip irrigation and morning watering.",
+      "Contact a local agricultural extension office promptly, as late blight is a regional risk to neighboring farms and fields.",
+      "On farms, follow a labeled fungicide program formulated for water molds (not just general fungal pathogens) if conditions favor disease."
+    ],
+    "preventive_measures": [
+      "Plant certified, disease-free seed tubers and inspect tomato transplants before planting.",
+      "Destroy potato cull piles and control volunteer potato plants before the growing season begins.",
+      "Rotate away from tomatoes, potatoes, peppers, and eggplant for at least three to four years.",
+      "Choose available resistant varieties, understanding they may still show some symptoms under high disease pressure.",
+      "Monitor regional outbreak reports (e.g., USABlight) during the growing season."
+    ],
+    "source": "University of Minnesota Extension",
+    "source_url": "https://extension.umn.edu/disease-management/late-blight",
+    "last_verified": "2021"
+  },
+  {
+    "crop": "Potato",
+    "disease": "Potato Late Blight",
+    "description": "Late blight is a potentially devastating disease of potato and tomato caused by the water mold Phytophthora infestans. It infects leaves, stems, and tubers, and was responsible for the Irish potato famine of the 1840s.",
+    "symptoms": [
+      "Poorly defined, amorphous brown leaf spots that expand under cool, wet conditions.",
+      "Entire fields can turn brown and wilted in cool, wet weather, as if hit by frost.",
+      "Infected tubers become discolored (brown, red, or purple) and are prone to secondary soft rot.",
+      "Thin, white, powdery fungal growth may appear on the underside of leaves in humid conditions."
+    ],
+    "possible_causes": [
+      "Cool (60-70°F), damp weather with prolonged leaf wetness",
+      "Infected seed tubers or cull piles carrying the pathogen over winter",
+      "Nearby infected tomato plants or volunteer potato plants",
+      "Windblown spores from established regional outbreaks"
+    ],
+    "severity": "high",
+    "management_practices": [
+      "Scout fields regularly, especially in cool, wet weather, and check with a local extension office if late blight is suspected.",
+      "Destroy potato cull piles before the growing season by burying, spreading and incorporating into fields, or feeding to livestock.",
+      "Harvest tubers only after foliage has dried, and cure properly before storage to reduce tuber rot.",
+      "Remove infected plants promptly to slow spread to neighboring fields.",
+      "Follow a labeled fungicide program formulated for water molds if conditions favor disease; consult a local extension office for current recommendations."
+    ],
+    "preventive_measures": [
+      "Plant certified, disease-free seed tubers.",
+      "Control volunteer potato plants, which can grow from infected tubers left in the field.",
+      "Rotate away from solanaceous crops (potato, tomato, pepper, eggplant) for several years.",
+      "Choose available resistant varieties, understanding some symptoms may still appear under high disease pressure.",
+      "Monitor regional outbreak reports during the growing season."
+    ],
+    "source": "University of Minnesota Extension",
+    "source_url": "https://extension.umn.edu/disease-management/late-blight",
+    "last_verified": "2021"
+  },
+  {
+    "crop": "Maize",
+    "disease": "Maize Common Rust",
+    "description": "Common rust is a foliar disease of corn caused by the fungus Puccinia sorghi. It occurs frequently in the northern U.S. in mid-to-late summer but rarely reaches levels that cause yield loss in commercial hybrids.",
+    "symptoms": [
+      "Rust-colored to dark brown, elongated pustules form on both leaf surfaces.",
+      "Pustules contain cinnamon-brown spores (urediniospores) and darken as they age.",
+      "Both leaves and leaf sheaths can be infected.",
+      "Under severe conditions, leaf chlorosis (yellowing) and premature leaf death may occur."
+    ],
+    "possible_causes": [
+      "Cool temperatures (60-76°F), heavy dew, and prolonged leaf wetness (about six hours) with humidity above 95%",
+      "Windborne spores blown north into the region from overwintering sites",
+      "Young leaves are more susceptible than mature leaves; pustules are more likely to form after silking",
+      "Susceptible corn hybrids with limited resistance"
+    ],
+    "severity": "low",
+    "management_practices": [
+      "Scout fields regularly, especially during prolonged cool, wet periods.",
+      "Fungicides can be beneficial if applied early, while few pustules have appeared, particularly for seed corn production.",
+      "Consult a local agricultural extension office if pustule density is unusually high on young plants."
+    ],
+    "preventive_measures": [
+      "The best management practice is planting resistant corn hybrids where available.",
+      "Practice timely planting to help avoid peak rust-favorable periods.",
+      "Maintain balanced field nutrition and standard crop rotation practices."
+    ],
+    "source": "University of Minnesota Extension",
+    "source_url": "https://extension.umn.edu/corn-pest-management/common-rust-corn",
+    "last_verified": "2018"
+  }
+]
