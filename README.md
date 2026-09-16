@@ -1,212 +1,613 @@
-# Agricultural Intelligence & Disease Advisory Module
+# 🌾 Agricultural Intelligence & Disease Advisory Module
 
-Member 2 module for **Hack2Ignite — Agriculture (AG-01)**.
+<p align="center">
+  <strong>Turning AI Crop Disease Predictions into Actionable Agricultural Guidance</strong>
+</p>
 
-Converts Member 1's AI disease prediction, combined with agricultural
-knowledge and optional farmer location, into a farmer-friendly
-**Agricultural Advisory**. This module does **not** train, retrain, or
-override the AI model — it only interprets Member 1's canonical
-`PredictionResponse`.
+<p align="center">
+  <em>Hack2Ignite Hackathon · Agriculture Track AG-01</em>
+</p>
 
-## Project purpose
+<p align="center">
+  <strong>Team Malicious</strong>
+</p>
 
-Member 2 sits between the AI/ML disease classifier (Member 1) and the
-rest of the system (Member 4's backend, Member 3's frontend). It turns
-a raw model prediction into something a farmer can actually act on:
-disease description, symptoms, causes, severity, management guidance,
-preventive measures, and — where real data exists — regional context.
+<p align="center">
 
-## Architecture
+![Python](https://img.shields.io/badge/Python-3.11%2B-blue?style=for-the-badge\&logo=python)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge\&logo=fastapi)
+![Tests](https://img.shields.io/badge/Tests-70-success?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Hackathon%20Ready-orange?style=for-the-badge)
 
+</p>
+
+---
+
+## 🚜 Overview
+
+AI-based crop disease detection is only the first step.
+
+A farmer also needs to understand:
+
+* What disease has been detected?
+* What symptoms should be expected?
+* How serious is the condition?
+* What are the possible causes?
+* What management practices can be followed?
+* How can the disease be prevented?
+* When should expert guidance be considered?
+
+The **Agricultural Intelligence & Disease Advisory Module** bridges the gap between **AI prediction and practical agricultural decision support**.
+
+It transforms Member 1's canonical `PredictionResponse` into a structured, farmer-friendly `AgriculturalAdvisory` containing verified disease information, severity, management guidance, preventive measures, and optional regional context.
+
+> **AI detects. Agricultural Intelligence explains. Farmers act.**
+
+---
+
+## 🎯 Project Purpose
+
+This module serves as the intelligent advisory layer between the AI/ML disease classifier and the rest of the agricultural platform.
+
+It does **not** train, retrain, or override the AI model.
+
+Instead, it interprets the model's canonical output and enriches it using a verified agricultural knowledge repository.
+
+### Core Objective
+
+Transform:
+
+```text
+Raw AI Disease Prediction
 ```
-Member 1 (AI/ML)
-      ↓  PredictionResponse
-Member 2 (this module) — Agricultural Intelligence
-      ↓  AgriculturalAdvisory
-Member 4 (Main Backend / Database)
-      ↓
-Member 3 (Farmer Frontend)
+
+into:
+
+```text
+Reliable, Structured, Actionable Agricultural Advisory
 ```
 
-```
-app/
-├── main.py                  FastAPI app, global error handling
-├── api/advisory.py          HTTP endpoints
-├── core/
-│   ├── config.py            Settings (knowledge file path, thresholds)
-│   └── errors.py            Canonical error codes + classification
-├── schemas/
-│   ├── prediction.py        Member 1 contract (LOCKED field names, strict validation)
-│   ├── location.py          LocationContext, RegionalTrend, RegionalInsight
-│   └── advisory.py          Severity, AdvisoryStatus, DiseaseInformation, AgriculturalAdvisory
-├── services/
-│   ├── advisory_service.py       Core advisory engine
-│   ├── disease_lookup_service.py Lookup against the knowledge repository
-│   └── regional_insight_service.py Regional context (never fabricated)
-├── repositories/
-│   └── disease_repository.py     JSON-backed knowledge repository (swappable)
-└── utils/normalization.py   Exact, non-fuzzy key normalization
-data/disease_knowledge.json  Disease knowledge base, with source metadata
-tests/                       70 tests across prediction, advisory, lookup,
-                              severity, location, regional insight, API, and
-                              an explicit Member 1 integration test
+### Position in the System
+
+```text
+Member 1 — AI/ML Disease Classifier
+                    ↓
+             PredictionResponse
+                    ↓
+Member 2 — Agricultural Intelligence
+                    ↓
+             AgriculturalAdvisory
+                    ↓
+Member 4 — Main Backend / Database
+                    ↓
+Member 3 — Farmer Frontend
 ```
 
-## Setup
+---
 
-Requires **Python 3.11+** (uses `X | Y` union type syntax).
+## ✨ Key Features
+
+### 🧠 AI Prediction Interpretation
+
+Converts raw disease predictions into meaningful agricultural guidance while preserving the original AI output.
+
+### 📚 Verified Agricultural Knowledge
+
+Provides disease descriptions, symptoms, possible causes, severity, management practices, preventive measures, and source metadata.
+
+### ⚖️ Independent Severity Evaluation
+
+Disease severity is handled independently from model confidence.
+
+> **Confidence indicates model certainty. Severity indicates disease impact.**
+
+### 🛡️ Safety-First Advisory Generation
+
+Prevents fabricated disease information, unsupported recommendations, and unsafe chemical instructions.
+
+### 📍 Optional Regional Context
+
+Supports regional agricultural insights when real, documented data is available.
+
+### 🔍 Strict Disease Matching
+
+Uses exact-normalized lookup rather than fuzzy matching to prevent incorrect disease assumptions.
+
+### 🚦 Confidence-Aware Status
+
+Low-confidence predictions can be marked as requiring review instead of being treated as certain.
+
+### 🔗 Integration-Ready Design
+
+Provides a clean contract for integration with the AI model, backend, database, and frontend.
+
+---
+
+## 🏗️ System Architecture
+
+```mermaid
+flowchart TD
+    A["Member 1<br/>AI/ML Disease Classifier"]
+    B["PredictionResponse"]
+    C["Member 2<br/>Agricultural Intelligence"]
+    D["Verified Disease Knowledge Base"]
+    E["Optional Regional Context"]
+    F["AgriculturalAdvisory"]
+    G["Member 4<br/>Main Backend / Database"]
+    H["Member 3<br/>Farmer Frontend"]
+
+    A --> B
+    B --> C
+    D --> C
+    E --> C
+    C --> F
+    F --> G
+    G --> H
+```
+
+### Data Flow
+
+```text
+LIVE AI PREDICTION
+       ↓
+STRICT VALIDATION
+       ↓
+DISEASE KNOWLEDGE LOOKUP
+       ↓
+SEVERITY + GUIDANCE
+       ↓
+CONFIDENCE EVALUATION
+       ↓
+REGIONAL CONTEXT (IF AVAILABLE)
+       ↓
+AGRICULTURAL ADVISORY
+       ↓
+BACKEND + FARMER INTERFACE
+```
+
+---
+
+## 🔄 Advisory Processing Pipeline
+
+```text
+1. Receive PredictionResponse
+             ↓
+2. Validate prediction schema
+             ↓
+3. Preserve original AI fields
+             ↓
+4. Evaluate prediction status
+             ↓
+5. Lookup verified disease knowledge
+             ↓
+6. Check confidence threshold
+             ↓
+7. Attach severity and guidance
+             ↓
+8. Add regional context if available
+             ↓
+9. Generate AgriculturalAdvisory
+             ↓
+10. Return structured API response
+```
+
+---
+
+## 🧩 Project Structure
+
+```text
+agricultural-intelligence/
+│
+├── app/
+│   ├── main.py
+│   │   └── FastAPI app + global error handling
+│   │
+│   ├── api/
+│   │   └── advisory.py
+│   │       └── HTTP endpoints
+│   │
+│   ├── core/
+│   │   ├── config.py
+│   │   │   └── Application settings
+│   │   └── errors.py
+│   │       └── Canonical error codes
+│   │
+│   ├── schemas/
+│   │   ├── prediction.py
+│   │   │   └── Member 1 prediction contract
+│   │   ├── location.py
+│   │   │   └── Location and regional insight schemas
+│   │   └── advisory.py
+│   │       └── Agricultural advisory response models
+│   │
+│   ├── services/
+│   │   ├── advisory_service.py
+│   │   │   └── Core advisory engine
+│   │   ├── disease_lookup_service.py
+│   │   │   └── Knowledge lookup logic
+│   │   └── regional_insight_service.py
+│   │       └── Regional context handling
+│   │
+│   ├── repositories/
+│   │   └── disease_repository.py
+│   │       └── Swappable knowledge repository
+│   │
+│   └── utils/
+│       └── normalization.py
+│           └── Exact-normalized key matching
+│
+├── data/
+│   └── disease_knowledge.json
+│
+├── tests/
+│   └── 70 automated tests
+│
+├── requirements.txt
+├── .env.example
+└── AGRICULTURAL_INTEGRATION_CONTRACT.md
+```
+
+---
+
+## 📊 Advisory Decision Logic
+
+| AI Prediction Status | Module Behaviour                                 |
+| -------------------- | ------------------------------------------------ |
+| `diseased`           | Generates disease-specific agricultural guidance |
+| `healthy`            | Provides preventive and monitoring guidance      |
+| `unknown`            | Marks advisory as `requires_review`              |
+| Unsupported disease  | Returns `not_available`                          |
+| Low confidence       | Flags advisory for review                        |
+| Missing knowledge    | Does not fabricate information                   |
+
+### Advisory Statuses
+
+```text
+ready
+requires_review
+not_available
+```
+
+---
+
+## 🧠 Engineering Principles
+
+This module is designed around **trust, correctness, and responsible AI interpretation**.
+
+### 1. AI Output Integrity
+
+The module never modifies the following fields received from Member 1:
+
+```text
+scan_id
+crop
+disease
+status
+confidence
+```
+
+The original prediction remains authoritative.
+
+### 2. Confidence ≠ Severity
+
+A model can be highly confident about a disease that has low severity, or uncertain about a disease that may be highly severe.
+
+These concepts are intentionally independent.
+
+### 3. No Fabricated Information
+
+If disease knowledge is unavailable, the module returns an explicit unavailable state instead of guessing.
+
+### 4. No Fuzzy Disease Guessing
+
+Near-match disease names are not silently mapped to known diseases.
+
+### 5. Location Does Not Override AI
+
+Location can provide additional context but cannot change the AI-identified disease.
+
+### 6. Strict Schema Validation
+
+Invalid confidence values, statuses, enums, and malformed requests are rejected explicitly.
+
+### 7. Swappable Repository Layer
+
+The knowledge repository can later be replaced with a database-backed implementation without changing the advisory engine.
+
+---
+
+## 📚 Knowledge Base
+
+The current hackathon knowledge base contains a small, verified illustrative dataset.
+
+### Supported Crops
+
+* 🍅 Tomato
+* 🥔 Potato
+* 🌽 Maize
+
+### Supported Diseases
+
+* Tomato Early Blight
+* Tomato Late Blight
+* Potato Late Blight
+* Maize Common Rust
+
+### Knowledge Record Schema
+
+Each record contains:
+
+```text
+Crop
+Disease
+Description
+Symptoms
+Possible Causes
+Severity
+Management Practices
+Preventive Measures
+Source
+Source URL
+Last Verified
+```
+
+### Data Source Strategy
+
+Disease information is backed by documented agricultural sources.
+
+The current dataset is intentionally limited and should be expanded with additional verified agricultural extension, ICAR, USDA, or equivalent sources before production deployment.
+
+---
+
+## 🔌 API Endpoints
+
+| Method | Endpoint                            | Purpose                        |
+| ------ | ----------------------------------- | ------------------------------ |
+| GET    | `/api/v1/health`                    | Service liveness check         |
+| POST   | `/api/v1/advisory`                  | Generate agricultural advisory |
+| GET    | `/api/v1/diseases/{crop}/{disease}` | Retrieve disease knowledge     |
+
+### Interactive API Documentation
+
+Once the server is running:
+
+```text
+http://localhost:8000/docs
+```
+
+Swagger UI provides interactive API testing.
+
+---
+
+## ⚙️ Installation & Setup
+
+### Requirements
+
+* Python 3.11+
+* pip
+* Virtual environment recommended
+
+### Navigate to the Module
 
 ```bash
 cd agricultural-intelligence
+```
+
+### Create Virtual Environment
+
+```bash
 python3 -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
+```
+
+### Activate Environment
+
+#### Linux / macOS
+
+```bash
+source .venv/bin/activate
+```
+
+#### Windows
+
+```bash
+.venv\Scripts\activate
+```
+
+### Install Dependencies
+
+```bash
 pip install -r requirements.txt
-cp .env.example .env             # optional, defaults work out of the box
+```
+
+### Configure Environment
+
+```bash
+cp .env.example .env
+```
+
+Default configuration works out of the box.
+
+### Start the Server
+
+```bash
 uvicorn app.main:app --reload --port 8000
 ```
 
-Interactive API docs (Swagger UI): `http://localhost:8000/docs`
+---
 
-Run tests:
+## 🧪 Testing
+
+The module includes **70 automated tests** covering validation, advisory generation, API behaviour, and integration.
 
 ```bash
 pytest
 ```
 
-### Environment variables
+### Test Coverage
 
-| Variable | Default | Purpose |
-|---|---|---|
-| `DISEASE_KNOWLEDGE_PATH` | `data/disease_knowledge.json` | Path to the knowledge base file |
-| `LOW_CONFIDENCE_THRESHOLD` | `0.5` | Confidence below this triggers `advisory_status = requires_review` |
+| Test Suite            |  Tests | Focus                            |
+| --------------------- | -----: | -------------------------------- |
+| Prediction validation |     13 | Schema and confidence validation |
+| Severity handling     |      6 | Severity enums and defaults      |
+| Disease lookup        |      8 | Exact matching and normalization |
+| Regional insights     |      5 | Regional context behaviour       |
+| Location validation   |      7 | Location schema validation       |
+| Advisory generation   |     16 | All advisory paths               |
+| API endpoints         |     13 | Endpoints and error handling     |
+| Member 1 integration  |      2 | Canonical end-to-end payload     |
+| **Total**             | **70** |                                  |
 
-No secrets, API keys, or tokens are required by this module; none are
-committed to the repository.
+### Validation Includes
 
-## Design rules this module enforces
+* Confidence bounds
+* Invalid status rejection
+* Missing required fields
+* Percentage-shaped confidence rejection
+* No confidence rescaling
+* Exact disease matching
+* No fuzzy lookup
+* AI field preservation
+* Severity independence
+* Regional insight handling
+* Canonical API error codes
+* End-to-end integration testing
 
-- **Never modifies** `scan_id`, `crop`, `disease`, `status`, or
-  `confidence` received from Member 1 — verified by explicit
-  passthrough tests for every advisory path (diseased, healthy,
-  unknown, not-available).
-- **Confidence is always a `0.0`–`1.0` float.** A bare percentage
-  (e.g. `94` instead of `0.94`) is rejected as `INVALID_PREDICTION`,
-  never silently coerced.
-- **Severity is never derived from confidence** — they are unrelated
-  concepts (model certainty vs. disease impact). Enforced by a
-  dedicated test comparing the same disease at very different
-  confidence levels.
-- **`unknown` status** → `advisory_status: requires_review`, no
-  disease-specific content, no fuzzy-matched guess.
-- **`healthy` status** → preventive/monitoring guidance only, never
-  disease treatment.
-- **`diseased` status with no matching knowledge** →
-  `advisory_status: not_available`, empty fields, no fabricated content.
-- **Location never overrides the AI-identified disease.** It only adds
-  optional regional context.
-- **No fabricated regional statistics.** `regional_insight.available`
-  is `false` unless a real, documented data source is wired in.
-- **Disease lookup is exact-normalized only** (case/whitespace), never
-  fuzzy/similarity-based — an unmatched pair is "not found," never a
-  guess (explicitly tested against near-miss phrasing like
-  `"tomato leaf problem"`).
-- **Severity, status, advisory status, and regional trend are all
-  strict enums** — arbitrary strings like `"Critical"` or `"infected"`
-  are rejected by schema validation, not silently accepted.
+---
 
-## API
+## 🛡️ Safety & Reliability
 
-| Method | Path | Purpose |
-|---|---|---|
-| GET | `/api/v1/health` | Liveness check |
-| POST | `/api/v1/advisory` | Build an advisory from a prediction (+ optional location) |
-| GET | `/api/v1/diseases/{crop}/{disease}` | Look up a raw knowledge record |
+Agricultural advice can directly influence crop management decisions.
 
-These three endpoints are **frozen** — see
-`AGRICULTURAL_INTEGRATION_CONTRACT.md` for the full request/response
-schemas, enums, error codes, and integration instructions for Member 1,
-3, and 4.
+This module therefore follows strict safety principles:
 
-## Knowledge base
+* No fabricated disease information
+* No fabricated regional statistics
+* No pesticide dosages
+* No chemical treatment schedules
+* General management guidance only
+* Expert consultation for uncertain or serious cases
+* Explicit unsupported-disease handling
+* Privacy-conscious location processing
 
-- **Supported crops:** 3 (Tomato, Potato, Maize)
-- **Supported diseases:** 4 (Tomato Early Blight, Tomato Late Blight,
-  Potato Late Blight, Maize Common Rust)
-- **Schema:** `DiseaseInformation` — crop, disease, description,
-  symptoms, possible_causes, `Severity` enum, management_practices,
-  preventive_measures, source, source_url, last_verified
-- **Data source strategy:** every record's `source`/`source_url` was
-  verified by fetching the live page during this revision, not
-  fabricated. Current sources:
-  - Tomato Early Blight — [University of Minnesota Extension](https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/early-blight-in-tomato-and-potato) (reviewed 2024)
-  - Tomato Late Blight / Potato Late Blight — [University of Minnesota Extension](https://extension.umn.edu/disease-management/late-blight) (reviewed 2021)
-  - Maize Common Rust — [University of Minnesota Extension](https://extension.umn.edu/corn-pest-management/common-rust-corn) (reviewed 2018)
+### AI Uncertainty Disclaimer
 
-  This is still a small, illustrative hackathon dataset (4 records) —
-  expand it with more verified extension/ICAR/USDA sources before any
-  production use, following the same schema and verification approach.
+Every advisory communicates that the result is AI-generated general guidance and recommends consulting a qualified agricultural expert for serious or uncertain cases.
 
-The `DiseaseKnowledgeRepository` interface means Member 4 can later
-back this with PostgreSQL/Supabase without changing the advisory logic
-— only a new repository implementation is needed.
+---
 
-## Safety
+## 🔗 Integration Contract
 
-- **AI uncertainty:** every advisory carries a disclaimer that the
-  result is AI-generated general guidance and recommends consulting a
-  qualified agricultural expert for serious or uncertain cases.
-- **Unsupported disease handling:** never fabricated — returns
-  `advisory_status = not_available` with empty/`unknown` fields.
-- **No fabricated regional data:** `regional_insight.available` is
-  only ever `true` when backed by a real, documented data source
-  (none is currently wired in, so it is always `false` today).
-- **No pesticide dosages or chemical schedules** are included;
-  management guidance stays general and defers to local agricultural
-  experts.
-- **Location privacy:** farmer coordinates are used only to compute
-  the requested regional context for that single request and are not
-  persisted or logged by this module.
+The module is designed to integrate seamlessly with the other components of the platform.
 
-## Testing
+### Member 1 → Member 2
 
-`pytest` — **70 tests**:
+Member 1 provides the canonical:
 
-- `test_prediction.py` (13) — schema validation: valid/healthy/diseased/unknown
-  predictions, confidence bounds (0.0, 1.0, below 0, above 1, percentage-shaped),
-  invalid status, missing required fields, confidence never rescaled
-- `test_severity.py` (6) — all four severity levels, default, rejection of
-  arbitrary values
-- `test_disease_lookup.py` (8) — known/unknown crop/disease, case and
-  whitespace normalization, explicit no-fuzzy-matching checks
-- `test_regional_insight.py` (5) — missing location, no-region location,
-  region present but unavailable, controlled trend vocabulary
-- `test_location.py` (7) — country/state/district-only, valid/invalid
-  lat/lon, fully optional
-- `test_advisory.py` (16) — every advisory path (ready/requires_review/
-  not_available), explicit Member 1 field-passthrough assertions for
-  each path, severity-independent-of-confidence
-- `test_api.py` (13) — all three endpoints, canonical error codes
-  (`INVALID_PREDICTION`, `INVALID_LOCATION`, `INVALID_REQUEST`,
-  `DISEASE_NOT_FOUND`), case-normalized disease lookup
-- `test_member1_integration.py` (2) — explicit end-to-end test using
-  the exact canonical Member 1 payload from the integration brief
+```text
+PredictionResponse
+```
 
-No lint/format tooling (ruff/black) was previously configured for this
-project, so none was introduced for this revision; imports and dead
-code were reviewed manually.
+The module validates field names, types, confidence values, and enum values against the locked contract.
 
-## Integration
+### Member 2 → Member 3
 
-- **Member 1 → Member 2:** Member 1 calls (or Member 4 forwards)
-  `POST /api/v1/advisory` with its `PredictionResponse`. Field names,
-  types, and enum values are validated strictly against the locked
-  contract.
-- **Member 2 → Member 3:** the frontend renders the returned
-  `AgriculturalAdvisory` directly — no knowledge of internal lookup,
-  severity, or regional logic required.
-- **Member 2 → Member 4:** the backend persists the advisory (or select
-  fields from it) alongside the scan record, without needing to know
-  the repository's internal implementation.
+The frontend receives:
 
-See `AGRICULTURAL_INTEGRATION_CONTRACT.md` for full schemas and
-worked examples.
+```text
+AgriculturalAdvisory
+```
+
+and can render the response directly without understanding internal lookup or regional logic.
+
+### Member 2 → Member 4
+
+The backend can persist the advisory or selected fields alongside the scan record.
+
+### Database Extensibility
+
+The `DiseaseKnowledgeRepository` abstraction allows future migration to:
+
+* PostgreSQL
+* Supabase
+* Other database systems
+
+without changing the core advisory logic.
+
+---
+
+## 🌍 Future Expansion
+
+The architecture supports future enhancements such as:
+
+* Expanded crop and disease coverage
+* Additional verified agricultural knowledge sources
+* ICAR and agricultural extension integration
+* Regional disease trend analysis
+* Weather-aware advisory generation
+* Multilingual farmer guidance
+* Voice-based agricultural assistance
+* Regional crop alerts
+* Database-backed knowledge repositories
+* Advanced preventive recommendation systems
+
+> These are planned extension opportunities and are not claimed as currently implemented functionality.
+
+---
+
+## 👨‍🌾 Real-World Impact
+
+The goal of this module is not simply to return a disease label.
+
+It is to make AI predictions:
+
+**Understandable. Responsible. Actionable.**
+
+```text
+AI Detection
+     ↓
+Verified Agricultural Knowledge
+     ↓
+Contextual Interpretation
+     ↓
+Actionable Guidance
+     ↓
+Better-Informed Farming Decisions
+```
+
+By combining machine learning with structured agricultural knowledge, this module helps transform a technical prediction into a practical decision-support layer for farmers.
+
+---
+
+## 🏆 Hackathon Context
+
+Developed for:
+
+### Hack2Ignite Hackathon
+
+**Track:** Agriculture
+**Track Code:** AG-01
+**Team:** Malicious
+
+The module contributes the agricultural intelligence and advisory layer of the overall platform.
+
+---
+
+## 👥 Team Malicious
+
+Built collaboratively by **Team Malicious** as part of the Hack2Ignite Hackathon.
+
+---
+
+## 📄 License
+
+Developed for educational, research, and hackathon purposes.
+
+---
+
+<p align="center">
+  <strong>🌱 Intelligence for Crops. Clarity for Farmers.</strong>
+</p>
+
+<p align="center">
+  <em>Built by Team Malicious for Hack2Ignite.</em>
+</p>
