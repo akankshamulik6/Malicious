@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg-primary: #f3f6f3;
+  --bg-card: #ffffff;
+  --bg-card-alt: #f9fbf9;
+  --bg-sage-light: #ebf3ea;
+  --bg-sage-glow: rgba(45, 90, 39, 0.06);
+
+  --primary-deep: #19381c;
+  --primary-sage: #2d5a27;
+  --primary-medium: #3f7936;
+  --primary-accent: #6aa856;
+  --primary-mint: #d8ebd4;
+
+  --status-healthy-bg: #eaf6ec;
+  --status-healthy-text: #1b6d2c;
+  --status-healthy-border: #b8e2c0;
+
+  --status-diseased-bg: #fdeee9;
+  --status-diseased-text: #c23919;
+  --status-diseased-border: #f7c7bb;
+
+  --status-unknown-bg: #f5f5f7;
+  --status-unknown-text: #595966;
+  --status-unknown-border: #dcdce3;
+
+  --text-primary: #172418;
+  --text-secondary: #526354;
+  --text-muted: #839485;
+  --border-light: rgba(45, 90, 39, 0.08);
+  --border-focus: rgba(45, 90, 39, 0.25);
+
+  --shadow-sm: 0 2px 8px rgba(25, 56, 28, 0.03);
+  --shadow-md: 0 8px 24px rgba(25, 56, 28, 0.06);
+  --shadow-lg: 0 16px 40px rgba(25, 56, 28, 0.09);
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+
+  --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, select, textarea {
+  font-family: inherit;
+}
+
+/* App Layout Grid */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  transition: all 0.25s ease;
+}
+
+.dashboard-content {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* Glassmorphism & Card Styles */
+.card-surface {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-surface:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+}
+
+.badge-healthy {
+  background-color: var(--status-healthy-bg);
+  color: var(--status-healthy-text);
+  border: 1px solid var(--status-healthy-border);
+}
+
+.badge-diseased {
+  background-color: var(--status-diseased-bg);
+  color: var(--status-diseased-text);
+  border: 1px solid var(--status-diseased-border);
+}
+
+.badge-unknown {
+  background-color: var(--status-unknown-bg);
+  color: var(--status-unknown-text);
+  border: 1px solid var(--status-unknown-border);
+}
+
+/* Primary Button */
+.btn-primary {
+  background-color: var(--primary-sage);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(45, 90, 39, 0.25);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(45, 90, 39, 0.35);
+}
+
+.btn-secondary {
+  background-color: var(--bg-sage-light);
+  color: var(--primary-sage);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-mint);
+  color: var(--primary-deep);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5ce;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a2b5a5;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .dashboard-content {
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+}
