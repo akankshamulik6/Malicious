@@ -11,7 +11,7 @@
 <p align="center">
   <strong>Team Malicious</strong>
 </p>
-
+<div align="center">
 <p align="center">
 
 ![Python](https://img.shields.io/badge/Python-3.11%2B-blue?style=for-the-badge\&logo=python)
@@ -20,7 +20,7 @@
 ![Status](https://img.shields.io/badge/Status-Hackathon%20Ready-orange?style=for-the-badge)
 
 </p>
-
+</div>
 ---
 
 ## 🚜 Overview
