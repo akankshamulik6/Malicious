@@ -5,6 +5,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
 from app.api.advisory import router as advisory_router
+from app.api.prediction import router as prediction_router
 from app.core.config import settings
 from app.core.errors import classify_validation_error
 
@@ -19,6 +20,7 @@ app = FastAPI(
 )
 
 app.include_router(advisory_router)
+app.include_router(prediction_router)
 
 
 @app.exception_handler(RequestValidationError)
