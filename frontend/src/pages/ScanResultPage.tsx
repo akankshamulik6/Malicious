@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { CropScanResult } from "../types";
+import type { CropScanResult } from "../types";
 import { ExplainabilityViewer } from "../components/scan/ExplainabilityViewer";
 import { AlertTriangle, CheckCircle, HelpCircle, ShieldAlert, Info } from "lucide-react";
 
@@ -70,9 +70,8 @@ export const ScanResultPage: React.FC<Props> = ({ result, imageUrl, onNewScan })
           </div>
           <div className="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden">
             <div
-              className={`h-full rounded-full transition-all duration-500 ${
-                prediction.confidence > 0.7 ? "bg-emerald-600" : "bg-amber-500"
-              }`}
+              className={`h-full rounded-full transition-all duration-500 ${prediction.confidence > 0.7 ? "bg-emerald-600" : "bg-amber-500"
+                }`}
               style={{ width: `${confidencePercent}%` }}
             />
           </div>
@@ -130,10 +129,9 @@ export const ScanResultPage: React.FC<Props> = ({ result, imageUrl, onNewScan })
               {/* Severity */}
               <div className="flex justify-between items-center border-b pb-3 border-gray-100">
                 <span className="text-xs font-bold text-gray-500">Severity Level</span>
-                <span className={`text-xs font-bold uppercase px-2.5 py-1 rounded-md ${
-                  advisory.severity === "high" ? "bg-rose-100 text-rose-700" :
-                  advisory.severity === "moderate" ? "bg-amber-100 text-amber-700" : "bg-emerald-100 text-emerald-700"
-                }`}>
+                <span className={`text-xs font-bold uppercase px-2.5 py-1 rounded-md ${advisory.severity === "high" ? "bg-rose-100 text-rose-700" :
+                    advisory.severity === "moderate" ? "bg-amber-100 text-amber-700" : "bg-emerald-100 text-emerald-700"
+                  }`}>
                   {advisory.severity}
                 </span>
               </div>

@@ -1,19 +1,28 @@
 import React, { useRef, useState, useEffect } from "react";
-import { PredictionResponse } from "../../types";
+import type { PredictionResponse } from "../../types";
 
 interface Props {
   prediction: PredictionResponse;
   imageUrl: string;
 }
 
-export const ExplainabilityViewer: React.FC<Props> = ({ prediction, imageUrl }) => {
+export const ExplainabilityViewer: React.FC<Props> = ({
+  prediction,
+  imageUrl,
+}) => {
   const imgRef = useRef<HTMLImageElement>(null);
   const [scale, setScale] = useState({ scaleX: 1, scaleY: 1 });
   const [showHeatmap, setShowHeatmap] = useState(false);
 
   const handleImageLoad = () => {
     if (imgRef.current) {
-      const { naturalWidth, naturalHeight, clientWidth, clientHeight } = imgRef.current;
+      const {
+        naturalWidth,
+        naturalHeight,
+        clientWidth,
+        clientHeight,
+      } = imgRef.current;
+
       setScale({
         scaleX: clientWidth / (naturalWidth || 1),
         scaleY: clientHeight / (naturalHeight || 1),
@@ -23,7 +32,10 @@ export const ExplainabilityViewer: React.FC<Props> = ({ prediction, imageUrl }) 
 
   useEffect(() => {
     window.addEventListener("resize", handleImageLoad);
-    return () => window.removeEventListener("resize", handleImageLoad);
+
+    return () => {
+      window.removeEventListener("resize", handleImageLoad);
+    };
   }, []);
 
   const activeImage =
@@ -34,15 +46,19 @@ export const ExplainabilityViewer: React.FC<Props> = ({ prediction, imageUrl }) 
   return (
     <div className="bg-white rounded-2xl p-4 border border-emerald-100 shadow-sm mb-4">
       <div className="flex justify-between items-center mb-2">
-        <h3 className="text-sm font-bold text-gray-800">Visual Diagnostics</h3>
-        {prediction.explainability.available && prediction.explainability.heatmap_url && (
-          <button
-            onClick={() => setShowHeatmap(!showHeatmap)}
-            className="text-xs bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full font-semibold border border-emerald-200"
-          >
-            {showHeatmap ? "View Image" : "View AI Heatmap"}
-          </button>
-        )}
+        <h3 className="text-sm font-bold text-gray-800">
+          Visual Diagnostics
+        </h3>
+
+        {prediction.explainability.available &&
+          prediction.explainability.heatmap_url && (
+            <button
+              onClick={() => setShowHeatmap(!showHeatmap)}
+              className="text-xs bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full font-semibold border border-emerald-200"
+            >
+              {showHeatmap ? "View Image" : "View AI Heatmap"}
+            </button>
+          )}
       </div>
 
       <div className="relative inline-block w-full overflow-hidden rounded-xl bg-gray-900">
@@ -54,10 +70,10 @@ export const ExplainabilityViewer: React.FC<Props> = ({ prediction, imageUrl }) 
           className="w-full h-auto object-contain max-h-[350px] mx-auto"
         />
 
-        {/* Dynamic Bounding Box Overlay scaled to actual DOM Image Size */}
         {!showHeatmap &&
           prediction.detections.map((det, index) => {
             if (!det.bounding_box) return null;
+
             const { x1, y1, x2, y2 } = det.bounding_box;
 
             const scaledX = x1 * scale.scaleX;
@@ -86,7 +102,8 @@ export const ExplainabilityViewer: React.FC<Props> = ({ prediction, imageUrl }) 
 
       {!prediction.explainability.available && (
         <p className="text-xs text-gray-500 mt-2 italic text-center">
-          Visual explainability heatmap is currently unavailable for this prediction model.
+          Visual explainability heatmap is currently unavailable for this
+          prediction model.
         </p>
       )}
     </div>
