@@ -34,7 +34,7 @@ export default function App() {
 
     try {
       // Get authentication token
-      const token = localStorage.getItem("access_token");
+      const token = localStorage.getItem("agri_auth_token");
 
       if (!token) {
         setError(

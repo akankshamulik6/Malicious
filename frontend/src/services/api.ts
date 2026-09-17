@@ -8,7 +8,7 @@ import type {
 } from '../types/api';
 
 // In dev, Vite proxies /api/* → http://localhost:8000. In production, same-origin is assumed.
-const API_BASE_URL = '/api/v1';
+const API_BASE_URL = 'https://malicious-backend-azgv.onrender.com/api/v1';
 
 export function getStoredToken(): string | null {
   return localStorage.getItem('agri_auth_token');
