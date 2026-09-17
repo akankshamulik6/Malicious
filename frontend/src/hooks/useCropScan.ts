@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { CropScanResult, ScanStatus, ApiError } from "../types";
+import type { CropScanResult, ScanStatus, ApiError } from "../types";
 import { scanApi } from "../api/scanApi";
 
 export function useCropScan() {

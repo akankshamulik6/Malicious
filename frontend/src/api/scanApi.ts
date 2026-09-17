@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CropScanResult, FarmerDashboardSummary, ScanSummary, ApiError } from "../types";
+import type { CropScanResult, FarmerDashboardSummary, ScanSummary, ApiError } from "../types";
 import { cropScanResultSchema } from "./validation";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
