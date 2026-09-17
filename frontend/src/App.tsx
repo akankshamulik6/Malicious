@@ -3,7 +3,7 @@ import axios from "axios";
 import { ScanResultPage } from "./pages/ScanResultPage";
 import type { CropScanResult } from "./types";
 import { Sparkles, Upload, Loader2, Scan } from "lucide-react";
-const API_URL = "http://localhost:8000";
+const API_URL = "https://malicious-backend-azgv.onrender.com";
 
 export default function App() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
