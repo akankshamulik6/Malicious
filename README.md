@@ -612,3 +612,23 @@ Developed for educational, research, and hackathon purposes.
 <p align="center">
   <em>Built by Team Malicious for Hack2Ignite.</em>
 </p>
+---
+---
+
+## 📸 Prototype Screenshots
+
+### 🌱 GreenMind AI — Crop Image Upload
+
+![GreenMind AI Upload](1ss.jpeg)
+
+### 🔍 Crop Image Analysis
+
+![Crop Image Analysis](2ss.jpeg)
+
+### 🧠 AI Disease Detection
+
+![AI Disease Detection](3ss.jpeg)
+
+### 🌾 Agricultural Advisory
+
+![Agricultural Advisory](4ss.jpeg)
